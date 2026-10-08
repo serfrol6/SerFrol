@@ -1,0 +1,11 @@
+﻿  FileName.cpp
+C:\Users\1\source\repos\Project2\Project2\FileName.cpp(78,22): warning C4244: +=: преобразование "double" в "unsigned int", возможна потеря данных
+C:\Users\1\source\repos\Project2\Project2\FileName.cpp(79,22): warning C4244: +=: преобразование "double" в "unsigned int", возможна потеря данных
+C:\Users\1\source\repos\Project2\Project2\FileName.cpp(80,21): warning C4244: +=: преобразование "double" в "unsigned int", возможна потеря данных
+C:\Users\1\source\repos\Project2\Project2\FileName.cpp(137,22): warning C4244: +=: преобразование "double" в "unsigned int", возможна потеря данных
+C:\Users\1\source\repos\Project2\Project2\FileName.cpp(138,22): warning C4244: +=: преобразование "double" в "unsigned int", возможна потеря данных
+C:\Users\1\source\repos\Project2\Project2\FileName.cpp(139,21): warning C4244: +=: преобразование "double" в "unsigned int", возможна потеря данных
+C:\Users\1\source\repos\Project2\Project2\FileName.cpp(196,22): warning C4244: +=: преобразование "double" в "unsigned int", возможна потеря данных
+C:\Users\1\source\repos\Project2\Project2\FileName.cpp(197,22): warning C4244: +=: преобразование "double" в "unsigned int", возможна потеря данных
+C:\Users\1\source\repos\Project2\Project2\FileName.cpp(198,21): warning C4244: +=: преобразование "double" в "unsigned int", возможна потеря данных
+  Project2.vcxproj -> C:\Users\1\source\repos\Project2\x64\Debug\Project2.exe
