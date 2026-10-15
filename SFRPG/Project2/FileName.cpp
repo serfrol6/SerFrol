@@ -4,16 +4,16 @@
 #include <algorithm>
 #include <memory>
 
-// Ключевые понятия принципы ООП:
-// 1) Наследование
-// 2) Полиморфизм
-// 3) Абстракция
-// 4) Инкапсуляция (геттер и сеттер)
+// РљР»СЋС‡РµРІС‹Рµ РїРѕРЅСЏС‚РёСЏ РїСЂРёРЅС†РёРїС‹ РћРћРџ:
+// 1) РќР°СЃР»РµРґРѕРІР°РЅРёРµ
+// 2) РџРѕР»РёРјРѕСЂС„РёР·Рј
+// 3) РђР±СЃС‚СЂР°РєС†РёСЏ
+// 4) РРЅРєР°РїСЃСѓР»СЏС†РёСЏ (РіРµС‚С‚РµСЂ Рё СЃРµС‚С‚РµСЂ)
 
-// Модификаторы доступа:
-// public - публичный (Доступен внутри класса, внутри наследника и в основом потоке программы)
-// protected - защищенный (Можно изменять в исходном классе и в наследнике)
-// private - приватный (Доступен только в исзодном классе) |НЕ НАСЛЕДУЕТСЯ|
+// РњРѕРґРёС„РёРєР°С‚РѕСЂС‹ РґРѕСЃС‚СѓРїР°:
+// public - РїСѓР±Р»РёС‡РЅС‹Р№ (Р”РѕСЃС‚СѓРїРµРЅ РІРЅСѓС‚СЂРё РєР»Р°СЃСЃР°, РІРЅСѓС‚СЂРё РЅР°СЃР»РµРґРЅРёРєР° Рё РІ РѕСЃРЅРѕРІРѕРј РїРѕС‚РѕРєРµ РїСЂРѕРіСЂР°РјРјС‹)
+// protected - Р·Р°С‰РёС‰РµРЅРЅС‹Р№ (РњРѕР¶РЅРѕ РёР·РјРµРЅСЏС‚СЊ РІ РёСЃС…РѕРґРЅРѕРј РєР»Р°СЃСЃРµ Рё РІ РЅР°СЃР»РµРґРЅРёРєРµ)
+// private - РїСЂРёРІР°С‚РЅС‹Р№ (Р”РѕСЃС‚СѓРїРµРЅ С‚РѕР»СЊРєРѕ РІ РёСЃР·РѕРґРЅРѕРј РєР»Р°СЃСЃРµ) |РќР• РќРђРЎР›Р•Р”РЈР•РўРЎРЇ|
 
 using namespace std;
 
@@ -42,7 +42,7 @@ private:
     bool isEnemy = true;
 
 public:
-    unsigned int GetDamage() //геттер
+    unsigned int GetDamage() //РіРµС‚С‚РµСЂ
     {
         return damage;
     };
@@ -50,37 +50,37 @@ public:
     {
         return health;
     };
-    void SetHealth(unsigned int health) //сеттер
+    void SetHealth(unsigned int health) //СЃРµС‚С‚РµСЂ
     {
         this->health = health;
     };
     virtual void GetInfo()
     {
-        cout << "Имя: " << name << endl;
-        cout << "Здоровье: " << health << endl;
-        cout << "Урон: " << damage << endl;
-        cout << "Уровень: " << lvl << endl;
-        cout << "Броня: " << armor << endl;
+        cout << "РРјСЏ: " << name << endl;
+        cout << "Р—РґРѕСЂРѕРІСЊРµ: " << health << endl;
+        cout << "РЈСЂРѕРЅ: " << damage << endl;
+        cout << "РЈСЂРѕРІРµРЅСЊ: " << lvl << endl;
+        cout << "Р‘СЂРѕРЅСЏ: " << armor << endl;
     };
 
-    virtual void Create() //создать нпс нельзя поэтому он виртуальный и весь класс тоже
+    virtual void Create() //СЃРѕР·РґР°С‚СЊ РЅРїСЃ РЅРµР»СЊР·СЏ РїРѕСЌС‚РѕРјСѓ РѕРЅ РІРёСЂС‚СѓР°Р»СЊРЅС‹Р№ Рё РІРµСЃСЊ РєР»Р°СЃСЃ С‚РѕР¶Рµ
     {
 
     };
     void LvlUp()
     {
         lvl += 1;
-        cout << name << " повысил уровень персонажа " << endl;
+        cout << name << " РїРѕРІС‹СЃРёР» СѓСЂРѕРІРµРЅСЊ РїРµСЂСЃРѕРЅР°Р¶Р° " << endl;
         Recalculate();
     };
-    void Recalculate() // кастомизировать для война и вошебника зависимости от интеллекта/силы
+    void Recalculate() // РєР°СЃС‚РѕРјРёР·РёСЂРѕРІР°С‚СЊ РґР»СЏ РІРѕР№РЅР° Рё РІРѕС€РµР±РЅРёРєР° Р·Р°РІРёСЃРёРјРѕСЃС‚Рё РѕС‚ РёРЅС‚РµР»Р»РµРєС‚Р°/СЃРёР»С‹
     {
         damage += (1 + lvl * 0.1);
         health += (1 + lvl * 0.1);
         armor += (1 + lvl * 0.1);
     };
 
-    friend void TakeDamage(NPC*, unsigned int damage);
+    friend void TakeDamage(unique_ptr <NPC> npc, unsigned int damage);
 
     virtual ~NPC() = default;
 };
@@ -92,26 +92,26 @@ protected:
     vector<Weapon> weapons;
 
 public:
-    // Конструктор по умолчанию
+    // РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ
     Warrior()
     {
-        // cout << "конструктор воин" << endl;
+        // cout << "РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РІРѕРёРЅ" << endl;
         damage = 20;
         health = 30;
         armor = 15;
     };
     Warrior(string name, unsigned int lvl = 1)
     {
-        this->name = name; // такой способ задания уместен только для сеттер
+        this->name = name; // С‚Р°РєРѕР№ СЃРїРѕСЃРѕР± Р·Р°РґР°РЅРёСЏ СѓРјРµСЃС‚РµРЅ С‚РѕР»СЊРєРѕ РґР»СЏ СЃРµС‚С‚РµСЂ
         for (size_t i = 0; i < lvl - 1; i++)
         {
             LvlUp();
         }
-        this->lvl = lvl; // this - указывает на конкретный экземпляр класса, в котором вызывается конструктор
+        this->lvl = lvl; // this - СѓРєР°Р·С‹РІР°РµС‚ РЅР° РєРѕРЅРєСЂРµС‚РЅС‹Р№ СЌРєР·РµРјРїР»СЏСЂ РєР»Р°СЃСЃР°, РІ РєРѕС‚РѕСЂРѕРј РІС‹Р·С‹РІР°РµС‚СЃСЏ РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ
     };
     void Create() override
     {
-        cout << "Вы создали война\nЗадайте имя игрока\n";
+        cout << "Р’С‹ СЃРѕР·РґР°Р»Рё РІРѕР№РЅР°\nР—Р°РґР°Р№С‚Рµ РёРјСЏ РёРіСЂРѕРєР°\n";
         cin >> name;
 
         GetInfo();
@@ -120,17 +120,17 @@ public:
     void GetInfo() override
     {
         NPC::GetInfo();
-        cout << "Сила " << strenght << endl;
+        cout << "РЎРёР»Р° " << strenght << endl;
     };
     void GetWeapon()
     {
         Weapon weapon;
         weapon.damage = 1;
-        weapon.name = "Кулаки";
+        weapon.name = "РљСѓР»Р°РєРё";
         weapons.push_back(weapon);
 
-        cout << name << " взял в руки оружие " << weapons[0].name << endl;
-        cout << "Добавка к урона = " << weapons[0].damage << endl;
+        cout << name << " РІР·СЏР» РІ СЂСѓРєРё РѕСЂСѓР¶РёРµ " << weapons[0].name << endl;
+        cout << "Р”РѕР±Р°РІРєР° Рє СѓСЂРѕРЅР° = " << weapons[0].damage << endl;
     };
     void Recalculate()
     {
@@ -140,7 +140,7 @@ public:
     }
     ~Warrior()
     {
-        cout << name << " пал смертью храбрых" << endl;
+        cout << name << " РїР°Р» СЃРјРµСЂС‚СЊСЋ С…СЂР°Р±СЂС‹С…" << endl;
     }
 };
 
@@ -153,7 +153,7 @@ protected:
 public:
     Wizard()
     {
-        // cout << "конструктор волшебник" << endl;
+        // cout << "РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РІРѕР»С€РµР±РЅРёРє" << endl;
         damage = 27;
         health = 21;
         armor = 10;
@@ -167,10 +167,10 @@ public:
         }
         this->lvl = lvl;
     };
-    //Реализуйте это в нпс (хрнаить название класса в поле)
+    //Р РµР°Р»РёР·СѓР№С‚Рµ СЌС‚Рѕ РІ РЅРїСЃ (С…СЂРЅР°РёС‚СЊ РЅР°Р·РІР°РЅРёРµ РєР»Р°СЃСЃР° РІ РїРѕР»Рµ)
     void Create() override
     {
-        cout << "Вы создали Мага\nЗадайте имя игрока\n";
+        cout << "Р’С‹ СЃРѕР·РґР°Р»Рё РњР°РіР°\nР—Р°РґР°Р№С‚Рµ РёРјСЏ РёРіСЂРѕРєР°\n";
         cin >> name;
 
         GetInfo();
@@ -179,17 +179,17 @@ public:
     void GetInfo() override
     {
         NPC::GetInfo();
-        cout << "Интеллект: " << intellect << endl;
+        cout << "РРЅС‚РµР»Р»РµРєС‚: " << intellect << endl;
     };
     void LearnSpell()
     {
         Spell spell;
         spell.damage = 1;
-        spell.name = "Вспышка";
+        spell.name = "Р’СЃРїС‹С€РєР°";
         spells.push_back(spell);
 
-        cout << name << " Изучил заклинение " << spells[0].name << endl;
-        cout << "Добавка к урона = " << spells[0].damage << endl;
+        cout << name << " РР·СѓС‡РёР» Р·Р°РєР»РёРЅРµРЅРёРµ " << spells[0].name << endl;
+        cout << "Р”РѕР±Р°РІРєР° Рє СѓСЂРѕРЅР° = " << spells[0].damage << endl;
     };
     void Recalculate()
     {
@@ -199,7 +199,7 @@ public:
     }
     ~Wizard()
     {
-        cout << name << " испускает дух" << endl;
+        cout << name << " РёСЃРїСѓСЃРєР°РµС‚ РґСѓС…" << endl;
     }
 };
 
@@ -208,7 +208,7 @@ class Evil : public NPC
 public:
     Evil()
     {
-        name = "Злодей";
+        name = "Р—Р»РѕРґРµР№";
         health = 10;
         damage = 5;
         armor = 3;
@@ -231,11 +231,11 @@ public:
     };
     ~Evil()
     {
-        cout << name << " сгинул в пучине адского пламени" << endl;
+        cout << name << " СЃРіРёРЅСѓР» РІ РїСѓС‡РёРЅРµ Р°РґСЃРєРѕРіРѕ РїР»Р°РјРµРЅРё" << endl;
     }
 };
 
-//Множественное наследование
+//РњРЅРѕР¶РµСЃС‚РІРµРЅРЅРѕРµ РЅР°СЃР»РµРґРѕРІР°РЅРёРµ
 class Paladin : public Warrior, public Wizard
 {
 public:
@@ -248,7 +248,7 @@ public:
     };
     void Create() override
     {
-        cout << "Вы создали Паладина\nЗадайте имя игрока\n";
+        cout << "Р’С‹ СЃРѕР·РґР°Р»Рё РџР°Р»Р°РґРёРЅР°\nР—Р°РґР°Р№С‚Рµ РёРјСЏ РёРіСЂРѕРєР°\n";
         cin >> name;
 
         GetInfo();
@@ -258,56 +258,51 @@ public:
     void GetInfo() override
     {
         NPC::GetInfo();
-        cout << "Сила: " << strenght << endl;
-        cout << "Интеллект: " << intellect << endl;
+        cout << "РЎРёР»Р°: " << strenght << endl;
+        cout << "РРЅС‚РµР»Р»РµРєС‚: " << intellect << endl;
     };
     ~Paladin()
     {
-        cout << "Отправляется к праотцам" << endl;
+        cout << "РћС‚РїСЂР°РІР»СЏРµС‚СЃСЏ Рє РїСЂР°РѕС‚С†Р°Рј" << endl;
     }
 
 };
-
+//РґСЂСѓР¶РµСЃС‚РІРµРЅРЅС‹Р№ РєР»Р°СЃСЃ, С…СЂР°РЅРёС‚ РёР»Рё РїСЂРёРЅРёРјР°РµС‚ Р°СЂРіСѓРјРµРЅС‚РѕРј СЌРєР·РµРјРїР»СЏСЂ РґСЂСѓРіРѕРіРѕ РєР»Р°СЃСЃР°Р°
+//Р±Р»Р°РіРѕРґР°СЂСЏ СЌС‚РѕРјСѓ РјРѕР¶РµС‚ РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ РµРіРѕ РїРѕР»СЏ Рё РјРµС‚РѕРґС‹ (РґР°Р¶Рµ Р·Р°С‰РёС‰С‘РЅРЅС‹Рµ)
 class Player
 {
 private:
-    unique_ptr<NPC>currentCharecter{ nullptr };
+    unique_ptr<NPC> currentCharacter;
 public:
-    void Create(unique_ptr<NPC> character)
+    void Create(unique_ptr <NPC> character)
     {
-        currentCharecter = move(character);
-        currentCharecter->Create();
-    };
-    NPC* GetCharacter()
-    {
-        return currentCharecter.get();
+        currentCharacter = move(character);
+        currentCharacter->Create();
     }
-    void GetInfo()
+    unique_ptr<NPC> GetCharecter()
     {
-        currentCharecter->GetInfo();
+        return move(currentCharacter);
     }
+
 };
-
-//можно использовать даже private поля класса NPC, так как функция TakeDamage является дружественной к классу NPC  (Нарушает инкапсуляцию, но иногда это необходимо)
-void TakeDamage(NPC* npc, unsigned int damage)
+//РґСЂСѓР¶РµСЃС‚РІРµРЅРЅР°СЏ С„СѓРЅРєС†РёСЏ РґР°С‘С‚ РґРѕСЃС‚СѓРї Рє РїРѕР»СЏРј РґР°Р¶Рµ РµСЃР»Рё РѕРЅРё РїСЂРёРІР°С‚РЅС‹Рµ 
+// РѕР±СЏР·Р°С‚РµР»РµРЅ РїСЂРѕС‚РѕС‚РёРї СЃ РєР»СЋС‡РµРІС‹Рј СЃР»РѕРІРѕРј friend РІРЅСѓС‚СЂРё СЃР°РјРѕРіРѕ РєР»Р°СЃСЃР°
+// РЅРµ СЏРІР»СЏРµС‚СЃСЏ С‡Р°СЃС‚СЊСЋ СЃР°РјРѕРіРѕ РєР»Р°СЃСЃР°
+void TakeDamage(unique_ptr <NPC> npc, unsigned int damage)
 {
-    npc->SetHealth(npc->GetHealth() - damage);
-    cout << npc->name << " получил урон " << damage << endl;
-    cout << "Оставшееся здоровье =" << npc->GetHealth() << endl;
-
+    npc->health -= damage;
+    cout << "Р’С‹ РїРѕР»СѓС‡РёР»Рё " << damage << " РµРґРµРЅРёС† СѓСЂРѕРЅР° ";
+    cout << " РўРµРєСѓС‰РµРµ Р·РґРѕСЂРѕРІСЊРµ = " << npc->health;
 }
+
+
 int main()
 {
-    setlocale(LC_ALL, "RUS");
-    // Warrior *warrior1 = new Warrior("Друг война", 5); // как только создался экземпляр класса, сразу вызвался конструктор по умолчанию
-    // warrior1->GetInfo();                              // стрека работает с указателями
-    // // delete warrior1;                                  // удаляем экземпляр класса, вызывается деструктор
-    // // warrior1 = nullptr;
-    // cout << endl;
-    // Wizard wizard1();
+    setlocale(LC_ALL, "Rus");
+    
     Player player;
-    cout << "Присядь путник у костра и расскажи кто ты" << endl;
-    cout << "\t1 - воин\n\t2 - маг \n\t3 - паладин" << endl;
+    cout << "РџСЂРёРІРµС‚СЃС‚РІСѓСЋ РїСѓС‚РЅРёРє, РїСЂРёСЃСЏРґСЊ Сѓ РєРѕСЃС‚СЂР° РґР° СЂР°СЃСЃРєР°Р¶Рё РєС‚Рѕ С‚С‹" << endl;
+    cout << "\t1 - РІРѕРёРЅ\n\t2 - РјР°Рі \n\t3 - РїР°Р»Р°РґРёРЅ" << endl;
     short choise = 0;
     cin >> choise;
     switch (choise)
@@ -322,26 +317,11 @@ int main()
         player.Create(make_unique<Paladin>());
         break;
     default:
-        cout << "Таких героев еще не было в наших краях" << endl;
+        cout << "РўР°РєРёС… РіРµСЂРѕРµРІ РµС‰Рµ РЅРµ Р±С‹Р»Рѕ РІ РЅР°С€РёС… РєСЂР°СЏС…" << endl;
+        break;
     }
-    cout << endl;
-    cout << "Информация о персонаже" << endl;
-    player.GetInfo();
+    TakeDamage(player.GetCharecter(),5);
 
-    // vector<unique_ptr<Evil>> evils;
 
-    // evils.push_back(make_unique<Evil>());
-    // evils.push_back(make_unique<Evil>());
-    // evils.push_back(make_unique<Evil>("Кабанчик"));
-    // evils.push_back(make_unique<Evil>("Гнолл", 12));
-    // evils.push_back(make_unique<Evil>("Гнолл дробитель", 15, 20));
-    // evils.push_back(make_unique<Evil>("Дракон", 50, 100, 200));
-
-    // for (const auto &evil : evils)
-    // {
-    //     evil->GetInfo();
-    //     cout << endl;
-    // }
-
-    return 0;
+        return 0;
 }
