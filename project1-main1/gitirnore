@@ -1,0 +1,38 @@
+# Visual Studio
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Build output
+Debug/
+Release/
+x64/
+x86/
+[Bb]in/
+[Oo]bj/
+[Dd]ebug*/
+[Rr]elease*/
+
+# Compiled files
+*.obj
+*.o
+*.exe
+*.dll
+*.pdb
+*.ilk
+*.pch
+*.lib
+*.idb
+*.tlog
+*.lastbuildstate
+
+# Visual Studio cache and generated files
+ipch/
+*.VC.db
+*.VC.VC.opendb
+
+# Windows
+Thumbs.db
+Desktop.ini
