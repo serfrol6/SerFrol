@@ -1,0 +1,14 @@
+{
+    "version": 1,
+    "revision": 0,
+    "rules": [
+        {
+            "primary-output": "game1\\x64\\Debug\\Wizard.obj",
+            "outputs": [
+                "game1\\x64\\Debug\\Wizard.h.obj.dt.module.json",
+                "game1\\x64\\Debug\\Wizard.h.obj.dt.d.json"
+            ],
+            "requires": []
+        }
+    ]
+}
